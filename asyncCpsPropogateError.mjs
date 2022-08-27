@@ -16,3 +16,8 @@ function readJSON(filename, callback) {
         callback(null, parsed);
     })
 }
+process.on('uncaughtException', (err) => {
+    console.error(`This will catch at last the JSOn parsing exception: ${err.message}`)
+    // terminate the application with 1 error as exit code. Without the following line, the application would continue running
+    process.exit(1);
+})
